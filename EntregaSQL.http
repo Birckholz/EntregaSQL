@@ -1,0 +1,6 @@
+@EntregaSQL_HostAddress = http://localhost:5185
+
+GET {{EntregaSQL_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
