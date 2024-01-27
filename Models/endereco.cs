@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EntityORM
+namespace EntregaSql
 {
     public class Endereco
     {
@@ -15,7 +15,7 @@ namespace EntityORM
         [StringLength(50)]
         public string? cidade { get; set; }
 
-        public int idCliente { get; set; }
+        public int idDonoEnd { get; set; }
 
     }
 }

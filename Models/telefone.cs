@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace EntityORM
+namespace EntregaSql
 {
     public class Telefone
     {

@@ -1,14 +1,12 @@
-using EntityORM;
 using Microsoft.EntityFrameworkCore;
 
-namespace EntityORM
+namespace EntregaSql
 {
     public class HotelIdisContext : DbContext
     {
         public DbSet<Cliente> Clientes { get; set; } = null!;
         public DbSet<contaHospedagem> contaHospedagems { get; set; } = null!;
         public DbSet<Endereco> Enderecos { get; set; } = null!;
-        public DbSet<enderecoFilial> EndrecosFiliais { get; set; } = null!;
         public DbSet<filialHotel> filiaisHoteis { get; set; } = null!;
         public DbSet<Funcionario> Funcionarios { get; set; } = null!;
         public DbSet<Pagamento> Pagamentos { get; set; } = null!;
