@@ -9,7 +9,7 @@ namespace EntregaSql
     public class enderecoController : Controller
     {
         [HttpPost("Cliente/{idCliente}/{rua}/{uf}/{cidade}")]
-        public IActionResult InserirEnderecoCliente(int idCliente, string cidade, string rua, char uf)
+        public IActionResult InserirEnderecoCliente(int idCliente, string cidade, string rua, string uf)
         {
             Endereco endereco = new Endereco()
             {
@@ -22,13 +22,19 @@ namespace EntregaSql
             using (var _context = new HotelIdisContext())
             {
                 endereco.fkCliente = _context.Clientes.FirstOrDefault(Cliente => Cliente.idCliente == idCliente);
+                Cliente? cliente1 = _context.Clientes.FirstOrDefault(Cliente => Cliente.idCliente == idCliente);
+                if (cliente1 != null && cliente1.EnderecosCliente != null)
+                {
+                    cliente1.EnderecosCliente.Add(endereco);
+                }
+
                 _context.Enderecos.Add(endereco);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
             }
         }
         [HttpPost("Filial/{idFilial}/{rua}/{uf}/{cidade}")]
-        public IActionResult InserirEnderecoComercial(int idFilial, string cidade, string rua, char uf)
+        public IActionResult InserirEnderecoComercial(int idFilial, string cidade, string rua, string uf)
         {
             Endereco endereco = new Endereco()
             {
@@ -70,7 +76,7 @@ namespace EntregaSql
             }
         }
         [HttpPut("Update/{id}/{comercial}")]
-        public IActionResult Put(int id, bool comercial, string rua, char? UF, string cidade)
+        public IActionResult Put(int id, bool comercial, string? rua, string? UF, string? cidade)
         {
             using (var _context = new HotelIdisContext())
             {

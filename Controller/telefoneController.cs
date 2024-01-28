@@ -20,6 +20,11 @@ namespace EntregaSql
             using (var _context = new HotelIdisContext())
             {
                 telefone1.clienteT = _context.Clientes.FirstOrDefault(Cliente => Cliente.idCliente == idCliente);
+                Cliente? cliente1 = _context.Clientes.FirstOrDefault(Cliente => Cliente.idCliente == idCliente);
+                if (cliente1 != null && cliente1.TelefonesCliente != null)
+                {
+                    cliente1.TelefonesCliente.Add(telefone1);
+                }
                 _context.Telefones.Add(telefone1);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
@@ -37,6 +42,11 @@ namespace EntregaSql
             using (var _context = new HotelIdisContext())
             {
                 telefone1.fkFilialHotel = _context.filiaisHoteis.FirstOrDefault(filialHotel => filialHotel.idFilial == idFilial);
+                filialHotel? filialHotel1 = _context.filiaisHoteis.FirstOrDefault(filialHotel => filialHotel.idFilial == idFilial);
+                if (filialHotel1 != null && filialHotel1.TelefonesHotel != null)
+                {
+                    filialHotel1.TelefonesHotel.Add(telefone1);
+                }
                 _context.Telefones.Add(telefone1);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");

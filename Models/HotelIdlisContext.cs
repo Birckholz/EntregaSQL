@@ -20,7 +20,7 @@ namespace EntregaSql
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=GUILHERME2943\SQLEXPRESS;Database=HotelIdis;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=COMPUTADORDEGUI\SQLEXPRESS;Database=HotelIdis;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

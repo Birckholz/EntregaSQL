@@ -11,7 +11,7 @@ namespace EntregaSql
         [StringLength(50)]
         public string? rua { get; set; }
         [MaxLength(2)]
-        public char? UF { get; set; }
+        public string? UF { get; set; }
         [StringLength(50)]
         public string? cidade { get; set; }
 
