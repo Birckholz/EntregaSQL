@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EntregaSql
@@ -6,19 +5,19 @@ namespace EntregaSql
 
     [Route("api/[controller]")]
     [ApiController]
-    public class pagamentoController : Controller
+    public class servicoContaController : Controller
     {
-        [HttpPost("{idContaHosp}/{tipo}")]
-        public IActionResult Post(int idContaHosp, string tipo)
+        [HttpPost("{idContaHosp}/{idServico}")]
+        public IActionResult Post(int idContaHosp, int idServico)
         {
-            Pagamento pagamento = new Pagamento()
+            ServicoConta servicoConta = new ServicoConta()
             {
                 idContaHosp = idContaHosp,
-                tipo = tipo
+                idServico = idServico
             };
             using (var _context = new HotelIdisContext())
             {
-                _context.Pagamentos.Add(pagamento);
+                _context.servicosConta.Add(servicoConta);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
             }
@@ -28,7 +27,7 @@ namespace EntregaSql
         {
             using (var _context = new HotelIdisContext())
             {
-                return Ok(_context.Pagamentos.ToList());
+                return Ok(_context.servicosConta.ToList());
             }
         }
 
@@ -37,7 +36,7 @@ namespace EntregaSql
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Pagamentos.FirstOrDefault(t => t.idPagamento == id);
+                var text = _context.servicosConta.FirstOrDefault(t => t.idServico == id);
                 if (text != null)
                 {
                     return Ok(text);
@@ -46,14 +45,14 @@ namespace EntregaSql
             }
         }
         [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] Pagamento pagamento)
+        public IActionResult Put(int id, [FromBody] Servico servico)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Pagamentos.FirstOrDefault(t => t.idPagamento == id);
+                var text = _context.servicosConta.FirstOrDefault(t => t.idServico == id);
                 if (text != null)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(pagamento);
+                    _context.Entry(text).CurrentValues.SetValues(servico);
                     _context.SaveChanges();
                     Ok("Dados Atualizados");
                 }
@@ -65,10 +64,10 @@ namespace EntregaSql
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Pagamentos.FirstOrDefault(t => t.idPagamento == id);
+                var text = _context.servicosConta.FirstOrDefault(t => t.idServico == id);
                 if (text != null)
                 {
-                    _context.Pagamentos.Remove(text);
+                    _context.servicosConta.Remove(text);
                     _context.SaveChanges();
                     Ok("Funcionario Removido");
                 }

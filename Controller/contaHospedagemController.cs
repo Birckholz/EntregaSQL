@@ -8,16 +8,21 @@ namespace EntregaSql
     [ApiController]
     public class contaHospedagemController : Controller
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] contaHospedagem contaHosp)
-        {
-            using (var _context = new HotelIdisContext())
-            {
-                _context.contaHospedagems.Add(contaHosp);
-                _context.SaveChanges();
-                return Ok("Dados Inseridos");
-            }
-        }
+        //contaHospedagem sem geradas ao criar a reserva por isso está comentado 
+        // [HttpPost("{idReserva}")]
+        // public IActionResult Post(int idReserva)
+        // {
+        //     contaHospedagem contaHosp = new contaHospedagem()
+        //     {
+        //         idReserva = idReserva
+        //     };
+        //     using (var _context = new HotelIdisContext())
+        //     {
+        //         _context.contaHospedagems.Add(contaHosp);
+        //         _context.SaveChanges();
+        //         return Ok("Dados Inseridos");
+        //     }
+        // }
         [HttpGet]
         public IActionResult Get()
         {

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CLIENTE\\Documents\\Trabalhos\\Independente\\Volvo-Stuff\\EntregaSQL\\EntregaSQL.csproj": {}
+    "Z:\\Documents\\Curso Volvo\\C#\\EntregaSQL\\EntregaSQL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CLIENTE\\Documents\\Trabalhos\\Independente\\Volvo-Stuff\\EntregaSQL\\EntregaSQL.csproj": {
+    "Z:\\Documents\\Curso Volvo\\C#\\EntregaSQL\\EntregaSQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CLIENTE\\Documents\\Trabalhos\\Independente\\Volvo-Stuff\\EntregaSQL\\EntregaSQL.csproj",
+        "projectUniqueName": "Z:\\Documents\\Curso Volvo\\C#\\EntregaSQL\\EntregaSQL.csproj",
         "projectName": "EntregaSQL",
-        "projectPath": "C:\\Users\\CLIENTE\\Documents\\Trabalhos\\Independente\\Volvo-Stuff\\EntregaSQL\\EntregaSQL.csproj",
-        "packagesPath": "C:\\Users\\CLIENTE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CLIENTE\\Documents\\Trabalhos\\Independente\\Volvo-Stuff\\EntregaSQL\\obj\\",
+        "projectPath": "Z:\\Documents\\Curso Volvo\\C#\\EntregaSQL\\EntregaSQL.csproj",
+        "packagesPath": "C:\\Users\\gui\\.nuget\\packages\\",
+        "outputPath": "Z:\\Documents\\Curso Volvo\\C#\\EntregaSQL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\CLIENTE\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gui\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

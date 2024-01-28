@@ -12,5 +12,12 @@ namespace EntregaSql
         [StringLength(50)]
         public string? tipo { get; set; }
 
+        public virtual ICollection<Reserva>? reservasRealizadas { get; set; }
+
+        public Funcionario()
+        {
+            reservasRealizadas = new List<Reserva>();
+        }
+
     }
 }

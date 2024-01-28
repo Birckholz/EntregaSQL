@@ -8,12 +8,32 @@ namespace EntregaSql
     [ApiController]
     public class telefoneController : Controller
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] Telefone telefone)
+        [HttpPost("Cliente/{idCliente}/{telefone}")]
+        public IActionResult InserirTelefoneCliente(int idCliente, char telefone)
         {
+            Telefone telefone1 = new Telefone()
+            {
+                idCliente = idCliente,
+                telefone = telefone
+            };
             using (var _context = new HotelIdisContext())
             {
-                _context.Telefones.Add(telefone);
+                _context.Telefones.Add(telefone1);
+                _context.SaveChanges();
+                return Ok("Dados Inseridos");
+            }
+        }
+        [HttpPost("Filial/{idCliente}/{telefone}")]
+        public IActionResult InserirTelefoneComercial(int idCliente, char telefone)
+        {
+            Telefone telefone1 = new Telefone()
+            {
+                idCliente = idCliente,
+                telefone = telefone
+            };
+            using (var _context = new HotelIdisContext())
+            {
+                _context.Telefones.Add(telefone1);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
             }

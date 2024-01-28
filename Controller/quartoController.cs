@@ -8,9 +8,17 @@ namespace EntregaSql
     [ApiController]
     public class quartoController : Controller
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] Quarto quarto)
+        [HttpPost("{idFilial}/{acomodaEsp}/{tipo}/{valor}/{maxCap}")]
+        public IActionResult Post(int idFilial, bool acomodaEsp, string tipo, int maxCap, float valor)
         {
+            Quarto quarto = new Quarto()
+            {
+                idFilial = idFilial,
+                acomadaEsp = acomodaEsp,
+                tipo = tipo,
+                maxCap = maxCap,
+                valor = valor
+            };
             using (var _context = new HotelIdisContext())
             {
                 _context.Quartos.Add(quarto);

@@ -8,9 +8,36 @@ namespace EntregaSql
     [ApiController]
     public class filialHotelController : Controller
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] filialHotel filialHotel)
+        [HttpPost("{nome}")]
+        public IActionResult Post(string nome, int? numQuartosCasal, int? numQuartoSolteiro, int? numQuartosFamilia, int? numQuartosPresidencial)
         {
+            int numQuartosCasalT = 0, numQuartosFamiliaT = 0, numQuartoSolteiroT = 0, numQuartosPresidencialT = 0;
+            if (numQuartosCasal != null)
+            {
+                numQuartosCasalT = Convert.ToInt32(numQuartosCasal);
+            }
+            if (numQuartosFamilia != null)
+            {
+                numQuartosFamiliaT = Convert.ToInt32(numQuartosFamilia);
+            }
+            if (numQuartoSolteiro != null)
+            {
+                numQuartoSolteiroT = Convert.ToInt32(numQuartoSolteiro);
+            }
+            if (numQuartosPresidencial != null)
+            {
+                numQuartosPresidencialT = Convert.ToInt32(numQuartosPresidencial);
+            }
+            filialHotel filialHotel = new filialHotel()
+            {
+                nome = nome,
+                numQuartosCasal = numQuartosCasalT,
+                numQuartosFamilia = numQuartosFamiliaT,
+                numQuartosPresidencial = numQuartosPresidencialT,
+                numQuartosSolteiro = numQuartoSolteiroT
+
+
+            };
             using (var _context = new HotelIdisContext())
             {
                 _context.filiaisHoteis.Add(filialHotel);

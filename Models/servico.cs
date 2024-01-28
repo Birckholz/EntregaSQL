@@ -9,8 +9,8 @@ namespace EntregaSql
 
         [StringLength(100)]
         public string? nomeServ { get; set; }
-        public int idContaHosp { get; set; }
         public float valor { get; set; }
-        public int quantidade { get; set; }
+
+        public virtual ICollection<ServicoConta>? servicosPorConta { get; set; }
     }
 }

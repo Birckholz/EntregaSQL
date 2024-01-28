@@ -1,4 +1,6 @@
 #bin
 bin/
 #obj
-Z:\Documents\Curso Volvo\C#\EntregaSQL\bin
+obj/
+#Migrations
+Migrations/

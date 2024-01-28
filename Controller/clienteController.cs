@@ -3,21 +3,36 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EntregaSql
 {
-
-    [Route("api/[controller]")]
     [ApiController]
-    public class clienteController : Controller
+    [Route("[controller]")]
+    public class ClienteController : ControllerBase
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] Cliente cliente)
+        [HttpPost("{nome}/{email}/{nacionalidade}")]
+        public IActionResult InserirCliente(string nome, string nacionalidade, string email)
         {
             using (var _context = new HotelIdisContext())
             {
+                var cliente = new Cliente()
+                {
+                    nome = nome,
+                    nacionalidade = nacionalidade,
+                    email = email
+                };
                 _context.Clientes.Add(cliente);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
             }
         }
+        // [HttpPost]
+        // public IActionResult Post([FromBody] Cliente cliente)
+        // {
+        //     using (var _context = new HotelIdisContext())
+        //     {
+        //         _context.Clientes.Add(cliente);
+        //         _context.SaveChanges();
+        //         return Ok("Dados Inseridos");
+        //     }
+        // }
         [HttpGet]
         public IActionResult Get()
         {

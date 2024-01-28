@@ -14,6 +14,15 @@ namespace EntregaSql
         [StringLength(100)]
         public string? email { get; set; }
 
+        public virtual ICollection<Endereco>? EnderecosCliente { get; set; }
+        public virtual ICollection<Telefone>? TelefonesCliente { get; set; }
+        public virtual ICollection<Reserva>? reservasFeitas { get; set; }
+        public Cliente()
+        {
+            EnderecosCliente = new List<Endereco>();
+            TelefonesCliente = new List<Telefone>();
+            reservasFeitas = new List<Reserva>();
+        }
 
     }
 }

@@ -15,7 +15,14 @@ namespace EntregaSql
         [StringLength(50)]
         public string? cidade { get; set; }
 
-        public int idDonoEnd { get; set; }
+        [ForeignKey("fkCliente")]
+        public int? idCliente { get; set; }
+        public virtual Cliente? fkCliente { get; set; }
+
+        [ForeignKey("fkFilialHotel")]
+        public int? idFilial { get; set; }
+        public virtual filialHotel? fkFilialHotel { get; set; }
+
 
     }
 }

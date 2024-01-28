@@ -8,11 +8,16 @@ namespace EntregaSql
     [ApiController]
     public class funcionarioController : Controller
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] Funcionario funcionario)
+        [HttpPost("{name}/{type}")]
+        public IActionResult Post(string name, string type)
         {
             using (var _context = new HotelIdisContext())
             {
+                Funcionario funcionario = new Funcionario()
+                {
+                    nome = name,
+                    tipo = type
+                };
                 _context.Funcionarios.Add(funcionario);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");

@@ -8,9 +8,14 @@ namespace EntregaSql
     [ApiController]
     public class servicoController : Controller
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] Servico servico)
+        [HttpPost("{nomeServ}/{valor}")]
+        public IActionResult Post(string nomeServ, float valor)
         {
+            Servico servico = new Servico()
+            {
+                nomeServ = nomeServ,
+                valor = valor
+            };
             using (var _context = new HotelIdisContext())
             {
                 _context.Servicos.Add(servico);

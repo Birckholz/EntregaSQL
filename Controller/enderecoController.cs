@@ -8,9 +8,17 @@ namespace EntregaSql
     [ApiController]
     public class enderecoController : Controller
     {
-        [HttpPost()]
-        public IActionResult Post([FromBody] Endereco endereco)
+        [HttpPost("Cliente/{idCliente}/{rua}/{uf}/{cidade}")]
+        public IActionResult InserirEnderecoCliente(int idCliente, string cidade, string rua, char uf)
         {
+            Endereco endereco = new Endereco()
+            {
+                idCliente = idCliente,
+                cidade = cidade,
+                rua = rua,
+                UF = uf,
+                idFilial = null
+            };
             using (var _context = new HotelIdisContext())
             {
                 _context.Enderecos.Add(endereco);
@@ -18,6 +26,25 @@ namespace EntregaSql
                 return Ok("Dados Inseridos");
             }
         }
+        [HttpPost("Filial/{idFilial}/{rua}/{uf}/{cidade}")]
+        public IActionResult InserirEnderecoComercial(int idFilial, string cidade, string rua, char uf)
+        {
+            Endereco endereco = new Endereco()
+            {
+                idFilial = idFilial,
+                cidade = cidade,
+                rua = rua,
+                UF = uf,
+                idCliente = null
+            };
+            using (var _context = new HotelIdisContext())
+            {
+                _context.Enderecos.Add(endereco);
+                _context.SaveChanges();
+                return Ok("Dados Inseridos");
+            }
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
