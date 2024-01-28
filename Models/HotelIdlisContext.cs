@@ -15,6 +15,7 @@ namespace EntregaSql
         public DbSet<Reserva> Reservas { get; set; } = null!;
         public DbSet<Servico> Servicos { get; set; } = null!;
         public DbSet<Telefone> Telefones { get; set; } = null!;
+        public DbSet<Conta> Contas { get; set; } = null!;
         public DbSet<reservaQuarto> ReservaQuartos { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -23,6 +24,9 @@ namespace EntregaSql
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<contaHospedagem>()
+                .HasKey(ch => new { ch.idConta, ch.idReserva });
+
             modelBuilder.Entity<reservaQuarto>()
                 .HasKey(rq => new { rq.idReserva, rq.idQuarto });
 
@@ -37,7 +41,7 @@ namespace EntregaSql
 
 
             modelBuilder.Entity<ServicoConta>()
-                .HasKey(cs => new { cs.idServico, cs.idContaHosp });
+                .HasKey(cs => new { cs.idServico, cs.idConta });
 
             modelBuilder.Entity<ServicoConta>()
                 .HasOne(cs => cs.fkServico)
@@ -45,9 +49,12 @@ namespace EntregaSql
                 .HasForeignKey(cs => cs.idServico);
 
             modelBuilder.Entity<ServicoConta>()
-                .HasOne(cs => cs.fkContaHosp)
+                .HasOne(cs => cs.fkConta)
                 .WithMany(c => c.servicosPorConta)
-                .HasForeignKey(cs => cs.idContaHosp);
+                .HasForeignKey(cs => cs.idConta);
+
+
+
             base.OnModelCreating(modelBuilder);
 
         }

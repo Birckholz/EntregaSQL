@@ -11,9 +11,8 @@ namespace EntregaSql
         public int idFilial { get; set; }
         public virtual filialHotel? filialHotel { get; set; }
 
-        [StringLength(64)]
         public bool acomadaEsp { get; set; }
-        [StringLength(11)]
+        [StringLength(12)]
         public string? tipo { get; set; }
 
         public float valor { get; set; }

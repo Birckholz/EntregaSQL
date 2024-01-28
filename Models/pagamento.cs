@@ -7,9 +7,9 @@ namespace EntregaSql
     {
         [Key]
         public int idPagamento { get; set; }
-        [ForeignKey("fkContaHosp")]
-        public int idContaHosp { get; set; }
-        public virtual contaHospedagem? fkContaHosp { get; set; }
+        [ForeignKey("fkConta")]
+        public int idConta { get; set; }
+        public virtual Conta? fkConta { get; set; }
 
         [StringLength(50)]
         public string? tipo { get; set; }

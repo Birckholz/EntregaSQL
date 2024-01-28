@@ -23,16 +23,7 @@ namespace EntregaSql
                 return Ok("Dados Inseridos");
             }
         }
-        // [HttpPost]
-        // public IActionResult Post([FromBody] Cliente cliente)
-        // {
-        //     using (var _context = new HotelIdisContext())
-        //     {
-        //         _context.Clientes.Add(cliente);
-        //         _context.SaveChanges();
-        //         return Ok("Dados Inseridos");
-        //     }
-        // }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -56,16 +47,28 @@ namespace EntregaSql
             }
         }
         [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] Cliente cliente)
+        public IActionResult Put(int id, string? nome, string? email, string? nacionalidade)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Clientes.FirstOrDefault(t => t.idCliente == id);
-                if (text != null)
+                var clienteUpdate = _context.Clientes.FirstOrDefault(t => t.idCliente == id);
+                if (clienteUpdate != null)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(cliente);
+                    if (email != null)
+                    {
+                        clienteUpdate.email = email;
+                    }
+                    if (nacionalidade != null)
+                    {
+                        clienteUpdate.nacionalidade = nacionalidade;
+                    }
+                    if (nome != null)
+                    {
+                        clienteUpdate.nome = nome;
+                    }
+
                     _context.SaveChanges();
-                    Ok("Dados Atualizados");
+                    return Ok("Dados Atualizados");
                 }
                 return NotFound("Não encontrado");
             }
@@ -80,7 +83,7 @@ namespace EntregaSql
                 {
                     _context.Clientes.Remove(text);
                     _context.SaveChanges();
-                    Ok("Funcionario Removido");
+                    return Ok("Funcionario Removido");
                 }
                 return NotFound("Não encontrado");
             }

@@ -15,11 +15,11 @@ namespace EntregaSql
 
         [ForeignKey("fkCliente")]
         public int idCliente { get; set; }
-        public virtual Cliente? fkCliente { get; set; }
+        public virtual Cliente fkCliente { get; set; } = null!;
 
         [ForeignKey("fkFuncionario")]
         public int idFuncionario { get; set; }
-        public virtual Funcionario? fkFuncionario { get; set; }
+        public virtual Funcionario fkFuncionario { get; set; } = null!;
 
         [StringLength(20)]
         public string? statusPedido { get; set; }

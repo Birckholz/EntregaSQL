@@ -46,14 +46,21 @@ namespace EntregaSql
             }
         }
         [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] Servico servico)
+        public IActionResult Put(int id, string nomeServ, float? valor)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Servicos.FirstOrDefault(t => t.idServico == id);
-                if (text != null)
+                var entityUpdate = _context.Servicos.FirstOrDefault(t => t.idServico == id);
+                if (entityUpdate != null)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(servico);
+                    if (nomeServ != null)
+                    {
+                        entityUpdate.nomeServ = nomeServ;
+                    }
+                    if (valor != null)
+                    {
+                        entityUpdate.valor = valor ?? entityUpdate.valor;
+                    }
                     _context.SaveChanges();
                     Ok("Dados Atualizados");
                 }

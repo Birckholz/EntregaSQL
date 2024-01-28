@@ -26,16 +26,32 @@ namespace EntregaSql
 
                 if (novaReserva.checarReservaPossivel(_context.ReservaQuartos.ToList(), novaReserva.dataCheckIn, novaReserva.dataCheckOut))
                 {
-                    _context.Reservas.Add(novaReserva);
-                    _context.SaveChanges();
-                    contaHospedagem contaHospedagem = new contaHospedagem()
+                    Conta conta = new Conta()
                     {
-                        idReserva = novaReserva.idReserva,
                         total = 0
                     };
+                    _context.Reservas.Add(novaReserva);
+                    _context.Contas.Add(conta);
+                    _context.SaveChanges();
                     reservaQuarto reservaQuarto = new reservaQuarto()
                     {
                         idQuarto = idQuarto,
+                        idReserva = novaReserva.idReserva
+                    };
+                    Cliente? cliente1 = _context.Clientes.FirstOrDefault(Clientes => Clientes.idCliente == novaReserva.idCliente);
+                    Funcionario? funcionario1 = _context.Funcionarios.FirstOrDefault(Funcionario => Funcionario.idFuncionario == idFuncionario);
+                    if (cliente1 != null)
+                    {
+                        novaReserva.fkCliente = cliente1;
+                    }
+                    if (funcionario1 != null)
+                    {
+                        novaReserva.fkFuncionario = funcionario1;
+                    }
+
+                    contaHospedagem contaHospedagem = new contaHospedagem()
+                    {
+                        idConta = conta.idConta,
                         idReserva = novaReserva.idReserva
                     };
                     _context.contaHospedagems.Add(contaHospedagem);

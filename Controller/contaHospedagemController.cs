@@ -37,7 +37,7 @@ namespace EntregaSql
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.contaHospedagems.FirstOrDefault(t => t.idContaHosp == id);
+                var text = _context.contaHospedagems.FirstOrDefault(t => t.idConta == id);
                 if (text != null)
                 {
                     return Ok(text);
@@ -45,15 +45,19 @@ namespace EntregaSql
                 return NotFound("Não encontrado");
             }
         }
-        [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] contaHospedagem contaHospedagem)
+        [HttpPut("Update/{idReserva}/{total}")]
+        public IActionResult Put(int idReserva, int? total)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.contaHospedagems.FirstOrDefault(t => t.idContaHosp == id);
-                if (text != null)
+                var updateEntity = _context.contaHospedagems.FirstOrDefault(t => t.idReserva == idReserva);
+                if (updateEntity != null)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(contaHospedagem);
+                    if (total != null)
+                    {
+                        // updateEntity.total = Convert.ToInt32(total);
+
+                    }
                     _context.SaveChanges();
                     Ok("Dados Atualizados");
                 }
@@ -65,7 +69,7 @@ namespace EntregaSql
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.contaHospedagems.FirstOrDefault(t => t.idContaHosp == id);
+                var text = _context.contaHospedagems.FirstOrDefault(t => t.idConta == id);
                 if (text != null)
                 {
                     _context.contaHospedagems.Remove(text);

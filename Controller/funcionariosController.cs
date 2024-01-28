@@ -46,14 +46,21 @@ namespace EntregaSql
             }
         }
         [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] Funcionario funcionario)
+        public IActionResult Put(int id, string nome, string tipo)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Funcionarios.FirstOrDefault(t => t.idFuncionario == id);
-                if (text != null)
+                var entityUpdate = _context.Funcionarios.FirstOrDefault(t => t.idFuncionario == id);
+                if (entityUpdate != null)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(funcionario);
+                    if (nome != null)
+                    {
+                        entityUpdate.nome = nome;
+                    }
+                    if (tipo != null)
+                    {
+                        entityUpdate.tipo = tipo;
+                    }
                     _context.SaveChanges();
                     Ok("Dados Atualizados");
                 }

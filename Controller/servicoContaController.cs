@@ -7,16 +7,22 @@ namespace EntregaSql
     [ApiController]
     public class servicoContaController : Controller
     {
-        [HttpPost("{idContaHosp}/{idServico}")]
-        public IActionResult Post(int idContaHosp, int idServico)
+        [HttpPost("{idConta}/{idServico}")]
+        public IActionResult Post(int idConta, int idServico)
         {
             ServicoConta servicoConta = new ServicoConta()
             {
-                idContaHosp = idContaHosp,
+                idConta = idConta,
                 idServico = idServico
             };
             using (var _context = new HotelIdisContext())
             {
+                Conta? updateValue = _context.Contas.FirstOrDefault(Conta => Conta.idConta == idConta);
+                Servico? servicoAdquirido = _context.Servicos.FirstOrDefault(Servico => Servico.idServico == idServico);
+                if (updateValue != null && servicoAdquirido != null)
+                {
+                    updateValue.total += servicoAdquirido.valor;
+                }
                 _context.servicosConta.Add(servicoConta);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");

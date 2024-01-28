@@ -60,16 +60,28 @@ namespace EntregaSql
                 return NotFound("Não encontrado");
             }
         }
-        [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] Telefone telefone)
+        [HttpPut("Update/{id}/{comercial}")]
+        public IActionResult Put(int id, bool comercial, char? telefone)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Telefones.FirstOrDefault(t => t.idTelefone == id);
-                if (text != null)
+                var entityUpdate = (Telefone)null;
+                if (comercial)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(telefone);
-                    _context.SaveChanges();
+                    entityUpdate = _context.Telefones.FirstOrDefault(t => t.idFilial == id);
+                }
+                else
+                {
+                    entityUpdate = _context.Telefones.FirstOrDefault(t => t.idCliente == id);
+                }
+                if (entityUpdate != null)
+                {
+                    if (telefone != null)
+                    {
+                        entityUpdate.telefone = telefone;
+
+                    }
+
                     Ok("Dados Atualizados");
                 }
                 return NotFound("Não encontrado");

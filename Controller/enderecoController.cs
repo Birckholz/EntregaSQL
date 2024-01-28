@@ -67,15 +67,37 @@ namespace EntregaSql
                 return NotFound("Não encontrado");
             }
         }
-        [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] Endereco endereco)
+        [HttpPut("Update/{id}/{comercial}")]
+        public IActionResult Put(int id, bool comercial, string rua, char? UF, string cidade)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Enderecos.FirstOrDefault(t => t.idEndereco == id);
-                if (text != null)
+                var entityUpdate = (Endereco)null;
+                if (comercial)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(endereco);
+                    entityUpdate = _context.Enderecos.FirstOrDefault(t => t.idFilial == id);
+                }
+                else
+                {
+                    entityUpdate = _context.Enderecos.FirstOrDefault(t => t.idCliente == id);
+                }
+                if (entityUpdate != null)
+                {
+                    if (UF != null)
+                    {
+                        entityUpdate.UF = UF;
+
+                    }
+                    if (cidade != null)
+                    {
+                        entityUpdate.cidade = cidade;
+
+                    }
+                    if (rua != null)
+                    {
+                        entityUpdate.rua = rua;
+
+                    }
                     _context.SaveChanges();
                     Ok("Dados Atualizados");
                 }

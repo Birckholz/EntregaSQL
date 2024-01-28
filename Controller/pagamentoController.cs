@@ -8,12 +8,12 @@ namespace EntregaSql
     [ApiController]
     public class pagamentoController : Controller
     {
-        [HttpPost("{idContaHosp}/{tipo}")]
-        public IActionResult Post(int idContaHosp, string tipo)
+        [HttpPost("{idConta}/{tipo}")]
+        public IActionResult Post(int idConta, string tipo)
         {
             Pagamento pagamento = new Pagamento()
             {
-                idContaHosp = idContaHosp,
+                idConta = idConta,
                 tipo = tipo
             };
             using (var _context = new HotelIdisContext())
@@ -45,15 +45,15 @@ namespace EntregaSql
                 return NotFound("Não encontrado");
             }
         }
-        [HttpPut("Update/{id}")]
-        public IActionResult Put(int id, [FromBody] Pagamento pagamento)
+        [HttpPut("Update/{idConta}")]
+        public IActionResult Put(int idConta, string tipo)
         {
             using (var _context = new HotelIdisContext())
             {
-                var text = _context.Pagamentos.FirstOrDefault(t => t.idPagamento == id);
-                if (text != null)
+                var entityUpdate = _context.Pagamentos.FirstOrDefault(t => t.idConta == idConta);
+                if (entityUpdate != null)
                 {
-                    _context.Entry(text).CurrentValues.SetValues(pagamento);
+                    entityUpdate.tipo = tipo;
                     _context.SaveChanges();
                     Ok("Dados Atualizados");
                 }
