@@ -21,6 +21,7 @@ namespace EntregaSql
             };
             using (var _context = new HotelIdisContext())
             {
+                endereco.fkCliente = _context.Clientes.FirstOrDefault(Cliente => Cliente.idCliente == idCliente);
                 _context.Enderecos.Add(endereco);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
@@ -39,6 +40,7 @@ namespace EntregaSql
             };
             using (var _context = new HotelIdisContext())
             {
+                endereco.fkFilialHotel = _context.filiaisHoteis.FirstOrDefault(filialHotel => filialHotel.idFilial == idFilial);
                 _context.Enderecos.Add(endereco);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");

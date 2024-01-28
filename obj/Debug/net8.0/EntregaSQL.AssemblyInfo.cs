@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EntregaSQL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23c3637d5f10c61fc27c6c946151a344f5c21fd1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+464a4d6087f91ecb89108f7c861d67fced07a8b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("EntregaSQL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EntregaSQL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

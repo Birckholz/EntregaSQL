@@ -23,6 +23,8 @@ namespace EntregaSql
                 {
                     updateValue.total += servicoAdquirido.valor;
                 }
+                servicoConta.fkServico = _context.Servicos.FirstOrDefault(Servico => Servico.idServico == idServico);
+                servicoConta.fkConta = _context.Contas.FirstOrDefault(Conta => Conta.idConta == idConta);
                 _context.servicosConta.Add(servicoConta);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");

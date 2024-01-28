@@ -36,7 +36,9 @@ namespace EntregaSql
                     reservaQuarto reservaQuarto = new reservaQuarto()
                     {
                         idQuarto = idQuarto,
-                        idReserva = novaReserva.idReserva
+                        idReserva = novaReserva.idReserva,
+                        fkReserva = novaReserva,
+                        fkQuarto = _context.Quartos.FirstOrDefault(Quarto => Quarto.idQuarto == idQuarto)
                     };
                     Cliente? cliente1 = _context.Clientes.FirstOrDefault(Clientes => Clientes.idCliente == novaReserva.idCliente);
                     Funcionario? funcionario1 = _context.Funcionarios.FirstOrDefault(Funcionario => Funcionario.idFuncionario == idFuncionario);
@@ -49,10 +51,14 @@ namespace EntregaSql
                         novaReserva.fkFuncionario = funcionario1;
                     }
 
-                    contaHospedagem contaHospedagem = new contaHospedagem()
+                    contaHospedagem contaHospedagem = new contaHospedagem
                     {
+
                         idConta = conta.idConta,
-                        idReserva = novaReserva.idReserva
+                        idReserva = novaReserva.idReserva,
+                        fkConta = conta,
+                        fkReserva = novaReserva
+
                     };
                     _context.contaHospedagems.Add(contaHospedagem);
                     _context.ReservaQuartos.Add(reservaQuarto);

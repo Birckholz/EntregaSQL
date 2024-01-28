@@ -9,7 +9,7 @@ namespace EntregaSql
         public int idQuarto { get; set; }
         [ForeignKey("fkIdFilial")]
         public int idFilial { get; set; }
-        public virtual filialHotel? filialHotel { get; set; }
+        public virtual filialHotel? fkfilialHotel { get; set; }
 
         public bool acomadaEsp { get; set; }
         [StringLength(12)]

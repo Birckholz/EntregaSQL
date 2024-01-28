@@ -18,6 +18,7 @@ namespace EntregaSql
             };
             using (var _context = new HotelIdisContext())
             {
+                pagamento.fkConta = _context.Contas.FirstOrDefault(Conta => Conta.idConta == idConta);
                 _context.Pagamentos.Add(pagamento);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");

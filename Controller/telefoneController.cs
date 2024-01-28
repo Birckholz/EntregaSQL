@@ -14,25 +14,29 @@ namespace EntregaSql
             Telefone telefone1 = new Telefone()
             {
                 idCliente = idCliente,
+                idFilial = null,
                 telefone = telefone
             };
             using (var _context = new HotelIdisContext())
             {
+                telefone1.clienteT = _context.Clientes.FirstOrDefault(Cliente => Cliente.idCliente == idCliente);
                 _context.Telefones.Add(telefone1);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
             }
         }
-        [HttpPost("Filial/{idCliente}/{telefone}")]
-        public IActionResult InserirTelefoneComercial(int idCliente, char telefone)
+        [HttpPost("Filial/{idFilial}/{telefone}")]
+        public IActionResult InserirTelefoneComercial(int idFilial, char telefone)
         {
             Telefone telefone1 = new Telefone()
             {
-                idCliente = idCliente,
-                telefone = telefone
+                idFilial = idFilial,
+                telefone = telefone,
+                idCliente = null
             };
             using (var _context = new HotelIdisContext())
             {
+                telefone1.fkFilialHotel = _context.filiaisHoteis.FirstOrDefault(filialHotel => filialHotel.idFilial == idFilial);
                 _context.Telefones.Add(telefone1);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");

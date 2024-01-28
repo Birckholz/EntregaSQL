@@ -21,6 +21,7 @@ namespace EntregaSql
             };
             using (var _context = new HotelIdisContext())
             {
+                quarto.fkfilialHotel = _context.filiaisHoteis.FirstOrDefault(filialHotel => filialHotel.idFilial == idFilial);
                 _context.Quartos.Add(quarto);
                 _context.SaveChanges();
                 return Ok("Dados Inseridos");
